@@ -156,8 +156,30 @@ def breadthFirstSearch(problem: SearchProblem):
 
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    granita = util.PriorityQueue()
+    
+    granita.push((problem.getStartState(), [], 0), 0)
+    
+    vizitate = set()
+
+    while not granita.isEmpty():
+        stare_curenta, actiuni, cost_total = granita.pop()
+
+        if stare_curenta not in vizitate:
+            vizitate.add(stare_curenta)
+
+            # Verificăm dacă am ajuns la țintă
+            if problem.isGoalState(stare_curenta):
+                return actiuni
+
+            # Explorăm vecinii
+            for urmatoarea_stare, actiune, cost in problem.getSuccessors(stare_curenta):
+                if urmatoarea_stare not in vizitate:
+                    noul_cost = cost_total + cost
+                    noi_actiuni = actiuni + [actiune]
+                    granita.push((urmatoarea_stare, noi_actiuni, noul_cost), noul_cost)
+
+    return []
 
 def nullHeuristic(state, problem=None):
     """
