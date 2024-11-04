@@ -87,7 +87,38 @@ def depthFirstSearch(problem: SearchProblem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    granita = util.Stack()
+    granita.push((problem.getStartState(), []))
+    noduri_vizitate = []
+    
+    while not granita.isEmpty():
+        stare, actiune = granita.pop()
+        
+        if problem.isGoalState(stare):
+            return actiune
+        
+        vizitat = False
+        for i in noduri_vizitate:
+            if i == stare:
+                vizitat = True
+                break
+        
+        if not vizitat:
+            noduri_vizitate.append(stare)
+            
+            for stare_ulterioara, actiune_ulterioara, cost_ulterior in problem.getSuccessors(stare):
+                # Verificăm dacă starea următoare nu a fost deja vizitată
+                vizitat_succesor = False
+                for i in noduri_vizitate:
+                    if i == stare_ulterioara:
+                        vizitat_succesor = True
+                        break
+                
+                if not vizitat_succesor:
+                    granita.push((stare_ulterioara, actiune + [actiune_ulterioara]))
+                
+    return []
+    # util.raiseNotDefined()
 
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
