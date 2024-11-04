@@ -87,35 +87,7 @@ def depthFirstSearch(problem: SearchProblem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    # Inițializăm stiva pentru DFS folosind util.Stack()
-    frontier = util.Stack()
-    # Pornim de la starea inițială, cu o listă goală de acțiuni
-    frontier.push((problem.getStartState(), []))
-    # Ținem evidența nodurilor vizitate
-    explored = set()
-    
-    while not frontier.isEmpty():
-        # Extragem starea curentă și acțiunile care ne-au adus aici
-        currentState, actions = frontier.pop()
-        
-        # Verificăm dacă am ajuns la țintă
-        if problem.isGoalState(currentState):
-            return actions
-            
-        # Dacă nu am vizitat deja această stare
-        if currentState not in explored:
-            # Marcăm starea ca vizitată
-            explored.add(currentState)
-            
-            # Obținem succesorii stării curente
-            for nextState, action, cost in problem.getSuccessors(currentState):
-                if nextState not in explored:
-                    # Adăugăm în stivă noua stare și acțiunile actualizate
-                    frontier.push((nextState, actions + [action]))
-    
-    # Returnăm [] dacă nu găsim soluție
-    return []
-    # util.raiseNotDefined()
+    util.raiseNotDefined()
 
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
