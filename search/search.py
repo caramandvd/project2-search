@@ -86,7 +86,6 @@ def depthFirstSearch(problem: SearchProblem):
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
-    "*** YOUR CODE HERE ***"
     granita = util.Stack()
     granita.push((problem.getStartState(), []))
     noduri_vizitate = []
